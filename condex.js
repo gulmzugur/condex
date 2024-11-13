@@ -1,3 +1,15 @@
+/**
+ * condex.js - Conditional Visibility Management
+ * @description Dynamically controls the visibility of HTML elements based on specified conditions.
+ * @author Squirtle
+ * @github https://github.com/gulmzugur/condex
+ * @version 1.0.0
+ * @license MIT
+ *
+ * Features:
+ * - Supports conditions like 'is', 'not', 'contains', 'less_than', 'greater_than'
+ * - Evaluates multiple conditions with 'and' or 'or' operators
+ */
 document.addEventListener('DOMContentLoaded', function () {
     'use strict';
 
