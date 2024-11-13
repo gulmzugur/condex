@@ -15,7 +15,7 @@
 `Condex` kütüphanesini projenize dahil etmek için, aşağıdaki adımları izleyin:
 
 ```html
-<script src="condex.min.js"></script>
+<script src="condex.js"></script>
 ```
 
 ## Kullanım
