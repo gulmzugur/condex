@@ -13,7 +13,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     'use strict';
 
-    const elements = 'select, input[type="radio"]:checked, input[type="text"], input[type="hidden"], input[type="checkbox"]';
+    const elements = 'select, input';
     const conditionalElements = document.querySelectorAll('[data-condition]');
 
     document.querySelectorAll('[data-condition-field]').forEach(function (item) {
@@ -79,7 +79,12 @@ document.addEventListener('DOMContentLoaded', function () {
             let passed;
 
             conditions.forEach(function (condition) {
-                const target = document.querySelector(`[name="${condition.check}"]`);
+                let target = document.querySelector(`[name="${condition.check}"]`);
+
+                if (target && target.type === 'radio') {
+                    const radioGroup = document.querySelectorAll(`[name="${condition.check}"]`);
+                    target = Array.from(radioGroup).find(radio => radio.checked);
+                }
 
                 if (!target || (!target.value && condition.value !== '')) {
                     return;
@@ -88,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 let v1 = target.value;
                 const v2 = condition.value.toString();
 
-                if (target.type === 'checkbox') {
+                if (target.type === 'checkbox' || target.type === 'radio') {
                     v1 = target.checked ? v1 : '';
                 }
 
