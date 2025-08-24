@@ -23,10 +23,17 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        item.querySelectorAll('select').forEach(function (selectElement) {
-            selectElement.addEventListener('select2:select', conditionEngine);
-            selectElement.addEventListener('select2:unselect', conditionEngine);
-        });
+        if (item.matches('select')) {
+            if ($(item).hasClass('select2-hidden-accessible')) {
+                $(item).on('select2:select select2:unselect', function (e) {
+                    conditionEngine();
+                });
+            } else {
+                item.addEventListener('change', function() {
+                    conditionEngine();
+                });
+            }
+        }
     });
 
     conditionEngine();
